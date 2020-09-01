@@ -5,7 +5,9 @@ import CreditForm from './components/creditForm';
 function App() {
   return (
     <div className="App">
-      <CreditForm />
+      <div className='AppBody'>
+        <CreditForm />
+      </div>
     </div>
   );
 }
