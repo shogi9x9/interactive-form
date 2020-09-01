@@ -1,7 +1,10 @@
 $fs-label: 14px;
 $fs-input: 18px;
+$fs-btn: 22px;
 
 $bc-input: #ced6e0;
+$bc-input-hover: #3d9cff;
+$bc-btn: #2364d2;
 
 .p-creditCardForm {
   width: 700px;
@@ -20,9 +23,22 @@ $bc-input: #ced6e0;
 }
 
 .p-form__group {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   width: 100%;
   text-align: left;
+  &.-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
+.p-form__subGroup {
+  text-align: left;
+  display: block;
+  &.-mr35 {
+    margin-right: 35px;
+  }
 }
 
 .p-form__label {
@@ -36,11 +52,54 @@ $bc-input: #ced6e0;
   width: 100%;
   border-radius: 5px;
   border: 1px solid $bc-input;
-  transition: all 0.5s ease-in-out;
+  transition: border 0.5s ease;
   padding: 5px 15px;
   height: 50px;
+  box-sizing: border-box;
+  &.-w150 {
+    width: 150px;
+  }
   &:focus,
   &:hover {
-    border-color: #3d9cff;
+    border: 1px solid $bc-input-hover;
+  }
+}
+
+.p-form__select {
+  font-size: $fs-input;
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid $bc-input;
+  transition: border 0.5s ease;
+  padding: 5px 30px 5px 15px;
+  display: inline-block;
+  box-sizing: border-box;
+  &.-w150 {
+    width: 150px;
+  }
+  &.-mr15 {
+    margin-right: 15px;
+  }
+  &:focus,
+  &:hover {
+    border: 1px solid $bc-input-hover;
+  }
+}
+
+.p-form__button {
+  box-sizing: border-box;
+  background-color: $bc-btn;
+  border-radius: 5px;
+  color: #ffffff;
+  border: none;
+  width: 100%;
+  height: 55px;
+  font-size: $fs-btn;
+  box-shadow: 3px 10px 20px 0px $bc-btn;
+  cursor: pointer;
+  &:focus,
+  &:active {
+    border: none;
   }
 }

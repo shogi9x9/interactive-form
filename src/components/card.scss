@@ -1,0 +1,14 @@
+.p-card {
+  position: absolute;
+  width: 430px;
+  height: 270px;
+  background-color: blueviolet;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-130px);
+  -webkit-transform: translateX(-50%) translateY(-130px);
+  padding: 25px 15px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  border: none;
+}
