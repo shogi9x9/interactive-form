@@ -1,0 +1,46 @@
+$fs-label: 14px;
+$fs-input: 18px;
+
+$bc-input: #ced6e0;
+
+.p-creditCardForm {
+  width: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  background-color: #ffffff;
+}
+
+.p-form {
+  width: 100%;
+  padding: 200px 100px 50px 100px;
+  box-sizing: border-box;
+}
+
+.p-form__group {
+  margin-bottom: 30px;
+  width: 100%;
+  text-align: left;
+}
+
+.p-form__label {
+  font-size: $fs-label;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.p-form__input {
+  font-size: $fs-input;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid $bc-input;
+  transition: all 0.5s ease-in-out;
+  padding: 5px 15px;
+  height: 50px;
+  &:focus,
+  &:hover {
+    border-color: #3d9cff;
+  }
+}
