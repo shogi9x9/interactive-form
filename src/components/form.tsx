@@ -36,7 +36,7 @@ export default class Form extends React.Component<{}, cardState> {
       <option value={i} key={`month_${i}`}>{i.toString().padStart(2, '0')}</option>
       )
     };
-    monthOptions.unshift(<option value={'null'} key={'month_null'} selected={true}>Month</option>)
+    monthOptions.unshift(<option value={'null'} key={'month_null'}>Month</option>)
 
     const yearOptions = [];
     const curr_year = new Date().getFullYear();
@@ -45,7 +45,7 @@ export default class Form extends React.Component<{}, cardState> {
         <option value={i} key={`year_${i}`}>{i.toString()}</option>
       )
     }
-    yearOptions.unshift(<option value={'null'} key={'year_null'} selected={true}>Year</option>)
+    yearOptions.unshift(<option value={'null'} key={'year_null'}>Year</option>)
 
     return (
       <div className='p-form'>
@@ -62,12 +62,12 @@ export default class Form extends React.Component<{}, cardState> {
           <div className='p-form__subGroup -mr35'>
             <label htmlFor='expirationYear' className='p-form__label'>Expiration Date</label>
             <div className='p-form__selectBox -mr15'>
-              <select id='expirationMonth' className='p-form__select -w150' placeholder='Month'>
+              <select id='expirationMonth' className='p-form__select -w150' placeholder='Month' defaultValue='null'>
                 {monthOptions}
               </select>
             </div>
             <div className='p-form__selectBox'>
-              <select id='expirationYear' className='p-form__select -w150' placeholder='Year'>
+              <select id='expirationYear' className='p-form__select -w150' placeholder='Year' defaultValue='null'>
                 {yearOptions}
               </select>
             </div>

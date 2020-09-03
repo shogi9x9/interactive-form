@@ -2,7 +2,8 @@
   position: absolute;
   width: 430px;
   height: 270px;
-  background-color: blueviolet;
+  background-color: #222222;
+  border: 1px solid #222222;
   top: 0;
   left: 50%;
   transform: translateX(-50%) translateY(-130px);
@@ -10,5 +11,17 @@
   padding: 25px 15px;
   box-sizing: border-box;
   border-radius: 15px;
-  border: none;
+  // border: none;
+}
+
+.p-card__top {
+  margin-bottom: 40px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.p-card__top-visaLogo {
+  max-height: 36px;
 }

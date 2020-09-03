@@ -30,7 +30,10 @@ export default class Card extends React.Component<{}, cardState> {
   render() {
     return (
       <div className='p-card'>
-        
+        <div className='p-card__top'>
+          <img src='/chip.svg' alt='chip_logo'/>
+          <img src='/visa_logo.svg' alt='visa_logo' className='p-card__top-visaLogo'/>
+        </div>
       </div>
     )
   }
