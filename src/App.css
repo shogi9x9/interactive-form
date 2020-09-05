@@ -1,6 +1,20 @@
+html,
+body,
+#root,
+.App {
+  min-height: 100vh;
+}
+
 .App {
   text-align: center;
   background-color: #ddeefc;
   margin: 0;
-  height: 100vh;
+  position: relative;
+}
+
+.AppBody {
+  position: relative;
+  height: auto;
+  padding-top: 75%;
+  content: "";
 }

@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
+import './global.scss';
 import CreditForm from './components/creditForm';
 
 function App() {
   return (
     <div className="App">
-      <CreditForm />
+      <div className='AppBody'>
+        <CreditForm />
+      </div>
     </div>
   );
 }
