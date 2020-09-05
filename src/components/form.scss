@@ -6,6 +6,7 @@ $bc-input: #ced6e0;
 $bc-input-hover: #3d9cff;
 $bc-btn: #2364d2;
 $bc-select: #1a3b5d;
+$color-boxShadow: rgba(90, 116, 148, 0.4);
 
 .p-creditCardForm {
   width: 700px;
@@ -15,6 +16,8 @@ $bc-select: #1a3b5d;
   transform: translateY(-50%) translateX(-50%);
   -webkit-transform: translateY(-50%) translateX(-50%);
   background-color: #ffffff;
+  box-shadow: 0 30px 60px 0 $color-boxShadow;
+  border-radius: 10px;
 }
 
 .p-form {

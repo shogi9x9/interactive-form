@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './global.scss';
 import CreditForm from './components/creditForm';
 
 function App() {

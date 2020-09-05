@@ -1,21 +1,116 @@
 $color-white: #ffffff;
+$color-pale-white: rgba(255, 255, 255, 0.8);
+$border-color: rgba(255, 255, 255, 0.5);
 $color-black: #222222;
 $color-cyan: #4dd0e1;
-$digit-size: 24px;
+$bc-cover-color: rgba(28, 29, 39, 0.2);
+$digit-size: 27px;
 $color-textShadow: rgba(14, 42, 90, 0.8);
+$color-boxShadow: rgba(14, 42, 90, 0.55);
+$color-cvvBoxShadow: rgba(32, 56, 117, 0.35);
+$fs-cvv: 15px;
+$fs-cvvValue: 18px;
 
-.p-card {
+* {
+  box-sizing: border-box;
+}
+
+.p-card__box {
   position: absolute;
-  width: 430px;
-  height: 270px;
-  background-color: $color-cyan;
   top: 0;
   left: 50%;
   transform: translateX(-50%) translateY(-130px);
   -webkit-transform: translateX(-50%) translateY(-130px);
+  box-sizing: border-box;
+  perspective: 860px;
+  transform-style: preserve-3d;
+  &.-active .p-card {
+    transform: rotateY(-180deg);
+  }
+  &.-active .p-card__back {
+    transform: rotateY(0deg);
+  }
+}
+
+.p-card__box-content {
+  position: relative;
+}
+
+.p-card {
+  position: relative;
+  width: 430px;
+  height: 270px;
   padding: 25px 15px;
   box-sizing: border-box;
+  z-index: 1;
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
+  transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
+  background-color: $color-cyan;
+  box-shadow: 0px 20px 60px $color-boxShadow;
   border-radius: 15px;
+
+  * {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.p-card__mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $bc-cover-color;
+  border-radius: 15px;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.p-card__mask-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $bc-cover-color;
+  border-radius: 15px;
+  z-index: 4;
+  top: 0;
+  left: 0;
+}
+
+.p-card__back {
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: $color-cyan;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
+  width: 100%;
+  box-shadow: 0px 20px 60px $color-boxShadow;
+  border-radius: 15px;
+  * {
+    z-index: 3;
+  }
+}
+
+.p-card__back-contentBox {
+  position: relative;
+}
+
+.p-card__back-content {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+}
+
+@mixin focus-border {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: border 0.5s linear;
+  &.-active {
+    border: 2px solid $border-color;
+  }
 }
 
 .p-card__top {
@@ -31,6 +126,7 @@ $color-textShadow: rgba(14, 42, 90, 0.8);
 }
 
 .p-card__cardNumber {
+  @include focus-border;
   display: flex;
   justify-content: space-between;
   padding: 10px 15px;
@@ -47,6 +143,7 @@ $color-textShadow: rgba(14, 42, 90, 0.8);
   font-size: $digit-size;
   font-style: italic;
   text-shadow: 7px 6px 10px $color-textShadow;
+  width: 19px;
 }
 
 .p-card__content {
@@ -54,16 +151,18 @@ $color-textShadow: rgba(14, 42, 90, 0.8);
 }
 
 .p-card__holderName {
+  @include focus-border;
   width: calc(100% - 85px);
   padding: 10px 15px;
   text-align: left;
+  margin-right: 30px;
 }
 
 .p-card__holderName-label {
   font-size: 13px;
   margin: 0;
   margin-bottom: 6px;
-  color: $color-white;
+  color: $color-pale-white;
   text-shadow: 7px 6px 10px $color-textShadow;
 }
 
@@ -75,15 +174,64 @@ $color-textShadow: rgba(14, 42, 90, 0.8);
 }
 
 .p-card__expirationDate {
+  @include focus-border;
   padding: 10px;
 }
 
 .p-card__expirationDate-label {
-  color: $color-white;
+  font-size: 13px;
+  margin: 0;
+  margin-bottom: 6px;
+  color: $color-pale-white;
   text-shadow: 7px 6px 10px $color-textShadow;
 }
 
 .p-card__expirationDate-date {
   color: $color-white;
+  font-size: 18px;
+  margin: 0;
   text-shadow: 7px 6px 10px $color-textShadow;
+}
+
+.p-card__band {
+  margin-top: 30px;
+  background-color: $color-black;
+  height: 50px;
+  width: 100%;
+  content: "";
+}
+
+.p-card__cvv-box {
+  padding: 15px;
+}
+
+.p-card__cvv-label {
+  text-align: right;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: $fs-cvv;
+  color: $color-white;
+}
+
+.p-card__cvv-value {
+  height: 45px;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 30px;
+  padding-right: 10px;
+  background-color: $color-white;
+  text-align: right;
+  border-radius: 4px;
+  box-shadow: 0px 10px 20px -7px $color-cvvBoxShadow;
+  font-size: $fs-cvvValue;
+  line-height: 45px;
+}
+
+.p-card__back-logoBox {
+  text-align: right;
+  padding-right: 15px;
+}
+
+.p-card__back-logo {
+  height: 36px;
 }
