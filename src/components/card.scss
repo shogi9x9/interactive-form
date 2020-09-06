@@ -3,6 +3,8 @@ $color-pale-white: rgba(255, 255, 255, 0.8);
 $border-color: rgba(255, 255, 255, 0.5);
 $color-black: #222222;
 $color-cyan: #4dd0e1;
+$color-navy: #054580;
+$bc-card: $color-navy;
 $bc-cover-color: rgba(28, 29, 39, 0.2);
 $digit-size: 27px;
 $color-textShadow: rgba(14, 42, 90, 0.8);
@@ -46,7 +48,7 @@ $fs-cvvValue: 18px;
   backface-visibility: hidden;
   transform: rotateY(0deg);
   transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
-  background-color: $color-cyan;
+  background-color: $bc-card;
   box-shadow: 0px 20px 60px $color-boxShadow;
   border-radius: 15px;
 
@@ -82,7 +84,7 @@ $fs-cvvValue: 18px;
   top: 0;
   left: 0;
   position: absolute;
-  background-color: $color-cyan;
+  background-color: $bc-card;
   backface-visibility: hidden;
   transform: rotateY(180deg);
   transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
@@ -138,12 +140,53 @@ $fs-cvvValue: 18px;
   justify-content: flex-start;
 }
 
+.p-card__cardNumber-digitBox {
+  // perspective: 65px;
+  // transform-style: preserve-3d;
+  height: 32.5px;
+  width: 19px;
+  &.-active .p-card__cardNumber-digit {
+    top: -100%;
+    opacity: 1;
+    display: inline-block;
+    transition: 0.1s top opacity linear;
+  }
+  &.-active .p-card__cardNumber-digitDefault {
+    top: -50%;
+    opacity: 0;
+  }
+}
+
+.p-card__cardNumber-digitDefault {
+  color: $color-white;
+  font-size: $digit-size;
+  font-style: italic;
+  width: 19px;
+  text-shadow: 7px 6px 10px $color-textShadow;
+  display: inline-block;
+  opacity: 1;
+  transition: 0.5s cubic-bezier(0.73, 1.65, 0.84, 0.92);
+  top: 0;
+  left: 0;
+}
+
 .p-card__cardNumber-digit {
   color: $color-white;
   font-size: $digit-size;
   font-style: italic;
-  text-shadow: 7px 6px 10px $color-textShadow;
   width: 19px;
+  display: none;
+  opacity: 0;
+  text-shadow: 7px 6px 10px $color-textShadow;
+  transition: opacity 1s linear;
+  top: 0;
+  left: 0;
+}
+
+.p-cardNumber-secret {
+  font-size: 45px;
+  line-height: 32.5px;
+  top: 8px;
 }
 
 .p-card__content {

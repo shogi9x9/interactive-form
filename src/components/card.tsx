@@ -29,7 +29,9 @@ export default class Card extends React.Component<{}, {}> {
                         <div className='p-card__expirationDate'>
                           <p className='p-card__expirationDate-label'>Expires</p>
                           <p className='p-card__expirationDate-date'>
-                            {this.getMonth(cardInfo.expirationMonth)}/{this.getYear(cardInfo.expirationYear)}
+                            {this.getMonth(cardInfo.expirationMonth)}
+                            <span className='-half'>/</span>
+                            {this.getYear(cardInfo.expirationYear)}
                           </p>
                         </div>
                       </div>
@@ -43,7 +45,7 @@ export default class Card extends React.Component<{}, {}> {
                         <div className='p-card__band'/>
                         <div className='p-card__cvv-box'>
                           <p className='p-card__cvv-label'>CVV</p>
-                          <p className='p-card__cvv-value'>{cardInfo.cvv}</p>
+                          <p className='p-card__cvv-value'>{this.getCvv(cardInfo.cvv)}</p>
                         </div>
                         <div className='p-card__back-logoBox'>
                           <img src='/visa_logo.svg' alt='visa_logo' className='p-card__back-logo'/>
@@ -70,11 +72,30 @@ export default class Card extends React.Component<{}, {}> {
     for(let i = 0; i < 4; i++) {
       const cardNumberDigitBlock = []
       for(let j = 0; j < 4; j++) {
-        cardNumberDigitBlock.push(
-            <span className='p-card__cardNumber-digit' key={`digit_${i * 4 + j}`}>
-              {cardNumberStr[i * 4 + j]}
-            </span>
-        );
+        const isNum =  /\d/.test(cardNumberStr[i * 4 + j])
+        if ((i === 1 || i === 2) && isNum) {
+          cardNumberDigitBlock.push(
+            <div className={'p-card__cardNumber-digitBox' + (isNum ? ' -active' : '')}>
+              <span className='p-card__cardNumber-digitDefault' key={`digitDefault_${i * 4 + j}`}>
+                {'#'}
+              </span>
+              <span className='p-card__cardNumber-digit p-cardNumber-secret' key={`digit_${i * 4 + j}`}>
+                <span className='p-cardNumber-secret'>{'*'}</span>
+              </span>
+            </div>
+          );
+        } else {
+          cardNumberDigitBlock.push(
+            <div className={'p-card__cardNumber-digitBox' + (isNum ? ' -active' : '')}>
+              <span className='p-card__cardNumber-digitDefault' key={`digitDefault_${i * 4 + j}`}>
+                {'#'}
+              </span>
+              <span className='p-card__cardNumber-digit' key={`digit_${i * 4 + j}`}>
+                {cardNumberStr[i * 4 + j]}
+              </span>
+            </div>
+          );
+        }
       }
       cardNumberSection.push(
         <div className='p-card__cardNumber-block' key={`digitBlock_${i}`}>
@@ -89,20 +110,30 @@ export default class Card extends React.Component<{}, {}> {
     return this.getValue(holderName, 'FULL NAME')
   }
 
-  private getMonth(monthStr: string): string {
+  private getMonth(monthStr: string): JSX.Element {
     if (monthStr === 'default') {
       monthStr = 'MM';
     } else if (monthStr.length === 1) {
       monthStr = '0' + monthStr;
     }
-    return this.getValue(monthStr, 'MM');
+    const val = this.getValue(monthStr, 'MM');
+    return (<span>{val}</span>);
   }
 
-  private getYear(yearStr: string): string {
+  private getYear(yearStr: string): JSX.Element {
     if (yearStr === 'default') {
       yearStr = 'YY';
     }
-    return this.getValue(yearStr, 'YY');
+    const val = this.getValue(yearStr, 'YY');
+    return (<span>{val}</span>);
+  }
+
+  private getCvv(cvv: string): string {
+    let cvvStr = '';
+    for (let i = 0; i < cvv.length; i++) {
+      cvvStr += '*'
+    }
+    return cvvStr;
   }
 
   private getValue(valueStr: string, defaultStr: string): string {
