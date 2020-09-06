@@ -75,7 +75,7 @@ export default class Card extends React.Component<{}, {}> {
         const isNum =  /\d/.test(cardNumberStr[i * 4 + j])
         if ((i === 1 || i === 2) && isNum) {
           cardNumberDigitBlock.push(
-            <div className={'p-card__cardNumber-digitBox' + (isNum ? ' -active' : '')}>
+            <div className={'p-card__cardNumber-digitBox' + (isNum ? ' -active' : '')} key={`digitBox_${i * 4 + j}`}>
               <span className='p-card__cardNumber-digitDefault' key={`digitDefault_${i * 4 + j}`}>
                 {'#'}
               </span>
@@ -86,7 +86,7 @@ export default class Card extends React.Component<{}, {}> {
           );
         } else {
           cardNumberDigitBlock.push(
-            <div className={'p-card__cardNumber-digitBox' + (isNum ? ' -active' : '')}>
+            <div className={'p-card__cardNumber-digitBox' + (isNum ? ' -active' : '')} key={`digitBox_${i * 4 + j}`}>
               <span className='p-card__cardNumber-digitDefault' key={`digitDefault_${i * 4 + j}`}>
                 {'#'}
               </span>
