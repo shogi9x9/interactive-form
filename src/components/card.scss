@@ -12,6 +12,7 @@ $color-boxShadow: rgba(14, 42, 90, 0.55);
 $color-cvvBoxShadow: rgba(32, 56, 117, 0.35);
 $fs-cvv: 15px;
 $fs-cvvValue: 18px;
+$image_id: random(26);
 
 * {
   box-sizing: border-box;
@@ -49,6 +50,7 @@ $fs-cvvValue: 18px;
   transform: rotateY(0deg);
   transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
   background-color: $bc-card;
+  background-image: url("../images/" + $image_id + ".jpeg");
   box-shadow: 0px 20px 60px $color-boxShadow;
   border-radius: 15px;
 
@@ -85,6 +87,7 @@ $fs-cvvValue: 18px;
   left: 0;
   position: absolute;
   background-color: $bc-card;
+  background-image: url("../images/" + $image_id + ".jpeg");
   backface-visibility: hidden;
   transform: rotateY(180deg);
   transition: 1s cubic-bezier(0.85, 0, 0.15, 1);
