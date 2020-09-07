@@ -3,9 +3,14 @@ import './card.scss';
 import './form.scss'
 import CardNumberFormatter from '../module/cardNumberFormatter';
 import CvvNumberFormat from '../module/cvvNumberFormatter';
-import { CardContext } from '../context/cardContext';
+import { CardContext, cardState } from '../context/cardContext';
 
-export default (props: any) => {
+interface propType {
+  setCardState: React.Dispatch<React.SetStateAction<cardState>>,
+  cardState: cardState
+}
+
+export default (props: propType) => {
   const monthOptions: Array<JSX.Element> = [];
   for (let i = 1; i <= 12; i++) {
     monthOptions.push(

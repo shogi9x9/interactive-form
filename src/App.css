@@ -14,7 +14,6 @@ body,
 
 .AppBody {
   position: relative;
-  height: auto;
-  padding-top: 75%;
+  min-height: 1000px;
   content: "";
 }
